@@ -1,24 +1,24 @@
 
-# 📊 RFM Analysis (Recency, Frequency, Monetary) Using SQL
+# RFM Analysis (Recency, Frequency, Monetary) Using SQL
 
-## 🧩 Problem Statement / Business Context
+## Problem Statement / Business Context
 An e-commerce company wanted to better understand customer value and loyalty. The raw dataset included inconsistencies like null values and negative quantities. Using RFM (Recency, Frequency, Monetary) analysis, the goal was to clean the data, calculate key metrics, and segment customers to improve marketing, retention, and revenue strategies.
 
 ---
 
-## 🎯 Objectives / Analysis Performed
+## Objectives / Analysis Performed
 
-**1. 📊 Data Cleaning & Preparation**  
+**1. Data Cleaning & Preparation**  
 - Removed rows with `NULL` CustomerID values  
 - Excluded records with negative quantities  
 - Ensured dataset was analysis-ready  
 
-**2. 🔢 RFM Metrics Calculation**  
+**2. RFM Metrics Calculation**  
 - **Recency**: Days since the customer’s last purchase  
 - **Frequency**: Total number of distinct purchase transactions  
 - **Monetary**: Total spend (Quantity × Unit Price)  
 
-**3. 🏷️ Customer Segmentation Using RFM Scores**  
+**3. Customer Segmentation Using RFM Scores**  
 - Applied `NTILE(5)` ranking to divide Recency, Frequency, and Monetary into quintiles  
 - Combined into a 3-digit `RFM Score`  
 - Segmented customers into categories:  
@@ -28,14 +28,14 @@ An e-commerce company wanted to better understand customer value and loyalty. Th
   - `At Risk`  
   - `Lost`  
 
-**4. 📉 Additional Analysis**  
+**4. Additional Analysis**  
 - Identified customers at risk of churn using Recency scores  
 - Measured **revenue contribution** by each RFM group  
 - Created a `MONTHS` view to analyze monthly purchase trends  
 
 ---
 
-## 🗃️ Dataset Description
+## Dataset Description
 **Table:** `E-Commerce`  
 
 **Key Columns:**
@@ -47,7 +47,7 @@ An e-commerce company wanted to better understand customer value and loyalty. Th
 
 ---
 
-## 🛠️ Tools & SQL Concepts Used
+## Tools & SQL Concepts Used
 - SQL Server  
 - Data filtering with `WHERE`  
 - Window functions: `NTILE() OVER()`  
@@ -57,9 +57,9 @@ An e-commerce company wanted to better understand customer value and loyalty. Th
 
 ---
 
-## 🧠 Sample SQL Snippets
+## Sample SQL Snippets
 
-### 🔹 Calculating RFM Metrics
+### Calculating RFM Metrics
 ```sql
 SELECT CustomerID,
        DATEDIFF(DAY, MAX(InvoiceDate), '2011-12-09') AS Recency_Of_Purchase,
@@ -70,7 +70,7 @@ WHERE CustomerID IS NOT NULL AND Quantity > 0
 GROUP BY CustomerID;
 ```
 
-### 🔹 Segmenting Customers with RFM Scores
+### Segmenting Customers with RFM Scores
 ```sql
 WITH RFM AS (
     SELECT CustomerID,
